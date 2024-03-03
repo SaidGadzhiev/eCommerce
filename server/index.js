@@ -1,10 +1,9 @@
 const express = require('express');
 const morgan = require('morgan');
+const createUser = require('./endpoints/users/createUser');
 
 const app = express();
 const port = 4000;
-
-const something = 'test';
 
 app.use(function (req, res, next) {
 	res.header(
@@ -21,6 +20,14 @@ app.use(function (req, res, next) {
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('tiny'));
+
+//users
+app.post('/users', createUser);
+
+app.get('/bacon', (req, res) => {
+	console.log('found');
+	res.status(200).json({ data: '🥓' });
+});
 
 app.listen(port, () => {
 	console.log(`Example app listening on port ${port}`);
