@@ -11,6 +11,8 @@ function App() {
 		}
 	};
 
+	console.log('hello');
+
 	useEffect(() => {
 		getData();
 	}, []);
